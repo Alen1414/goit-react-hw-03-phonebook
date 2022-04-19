@@ -38,7 +38,7 @@ class App extends Component {
       name,
       number,
     };
-    this.setState(prevState => ({
+    this.setState(({ prevState }) => ({
       contacts: [contact, ...prevState.contacts],
     }));
   };
@@ -78,3 +78,21 @@ export default App;
 //           ? { ...contact, completed: !contact.compledet }
 //           : contact
 //       ),
+
+// if(
+//         this.state.contacts.findIndex(contact => name === contact.name)
+//         {
+//           return alert(`${name}is already in contacts.`);
+//   }
+//     return {
+//        const contact = {
+//       id: nanoid(),
+//       name,
+//       number,
+//     };
+//     this.setState(({ prevState }) => ({
+//   contacts: [contact, ...prevState.contacts],
+// }
+
+//     }));
+//   };
