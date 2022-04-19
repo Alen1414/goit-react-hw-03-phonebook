@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-
-
+import 'components/Form.css';
 class Form extends Component{
     state = {
         name: '',
         number: '',
     };
-  
+    
+
    //-------- получаем что вводим в инпуте
     hendelChange = e => {
     const { name, value } = e.currentTarget;
@@ -25,8 +25,10 @@ class Form extends Component{
   };
     render() {
         return (
-             <form onSubmit={this.hendelSubmit}>
-          <label>
+            
+            <form className='main_form' onSubmit={this.hendelSubmit}>
+                
+          <label className='main_input'>
             Name
             <input
               value={this.state.name}
@@ -36,9 +38,10 @@ class Form extends Component{
               title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
               required
               onChange={this.hendelChange}
+             
             />
           </label>
-          <label>
+          <label className='main_input' >
             Number
             <input
               value={this.state.number}
@@ -48,9 +51,10 @@ class Form extends Component{
               title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
               required
               onChange={this.hendelChange}
+             
             />
           </label>
-          <button type="submit">Add contact</button>
+          <button className='main_buttom' type="submit">Add contact</button>
         </form>);
     }
 }
