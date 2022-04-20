@@ -15,14 +15,14 @@ class App extends Component {
     ],
     filter: '',
   };
-  _;
+
   // formSubmitHandler = data => {
   //   console.log(data);
   // };
 
   changeFilter = e => {
     this.setState({ filter: e.currentTarget.value });
-    console.log(e.currentTarget.filter);
+    // console.log(e.currentTarget.filter);
   };
   //--------удаляем елемент который совпадает
   deleteContact = contactId => {
@@ -32,27 +32,25 @@ class App extends Component {
   };
   //--------добавляем в список контакт(получаем данные и распыляем)
   addContact = ({ name, number }) => {
-    console.log(name, number);
+    // console.log(name, number);
     const contact = {
       id: nanoid(),
       name,
       number,
     };
-    this.setState(({ prevState }) => ({
-      contacts: [contact, ...prevState.contacts],
+    this.setState(({ contacts }) => ({
+      contacts: [contact, ...contacts],
     }));
   };
 
-  // //--------ищем по имени
-  // filterSearch = () => {
-  //   const { filter, contacts } = this.state;
-  //   const normaLize = filter.toLowerCase();
-  //   return contacts.filter(contact =>
-  //     contact.name.toLowerCase().includes(normaLize)
-  //   );
-  // };
-
   render() {
+    //---- для поиска приводим все в нижний регистр и ищем в стейте(неизменяя его)
+    const normaLize = this.state.filter.toLowerCase();
+    //------ вычисляем данные интерфейса
+    const visibleTodos = this.state.contacts.filter(contact =>
+      contact.name.toLowerCase().includes(normaLize)
+    );
+
     return (
       <div>
         <h1>Phonebook</h1>
@@ -61,7 +59,7 @@ class App extends Component {
         <Filter value={this.state.filter} onChange={this.changeFilter} />
 
         <ContactsList
-          contacts={this.state.contacts}
+          contacts={visibleTodos}
           onDeleteContact={this.deleteContact}
           // search={this.filterSearch}
         />
@@ -71,28 +69,3 @@ class App extends Component {
 }
 
 export default App;
-
-// this.setState(({ contacts }) => ({
-//       contacts: contacts.map(contact =>
-//         contact.id === contactId
-//           ? { ...contact, completed: !contact.compledet }
-//           : contact
-//       ),
-
-// if(
-//         this.state.contacts.findIndex(contact => name === contact.name)
-//         {
-//           return alert(`${name}is already in contacts.`);
-//   }
-//     return {
-//        const contact = {
-//       id: nanoid(),
-//       name,
-//       number,
-//     };
-//     this.setState(({ prevState }) => ({
-//   contacts: [contact, ...prevState.contacts],
-// }
-
-//     }));
-//   };
