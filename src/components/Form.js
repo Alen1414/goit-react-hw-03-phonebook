@@ -21,7 +21,7 @@ class Form extends Component{
     //-----очищаем инпут после отправки 
     
   reset = () => {
-    this.setState({ name: '', tag: '' });
+    this.setState({ name: '', number: '' });
   };
     render() {
         return (
