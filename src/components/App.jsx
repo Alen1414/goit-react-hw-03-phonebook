@@ -42,6 +42,27 @@ class App extends Component {
       contacts: [contact, ...contacts],
     }));
   };
+  // ----- проверяем или что то изменилось в стейте? сравнить можно предстайт и после обновления console.log(prevState);
+  //---- console.log(this.state);
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.contacts !== prevState.contacts) {
+      // console.log('update');
+      localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
+    }
+  }
+
+  //- когда массив пустой- получить данные при первой сессии c localStorage
+
+  componentDidMount() {
+    console.log('componentDidMount');
+
+    const contacts = localStorage.getItem('contacts');
+    const parselContacts = JSON.parse(contacts);
+    if (parselContacts) {
+      this.setState({ contacts: parselContacts });
+    }
+  }
 
   render() {
     //---- для поиска приводим все в нижний регистр и ищем в стейте(неизменяя его)
